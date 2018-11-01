@@ -334,11 +334,14 @@ uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfi
 
 El mismo comando sin la opción --become, nos mostrará que el comando se ha ejcutado con el usuario vagrant
 
+```
 [vagrant@centos7 ~]$ id
 uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+```
 
 > ansible all  -a "id"
 
+```
 [vagrant@centos7 ~]$ ansible all  -a "id"
 localhost | CHANGED | rc=0 >>
 uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
