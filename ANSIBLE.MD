@@ -25,6 +25,7 @@ Existen otras herramientas similares a Ansible, como CHEF, PUPPET o SALT.  La ve
 - No requiren de la instalación de agentes
 - la comunicación entre el servidor Ansible y los clientes siguen los estándar SSH.
 
+```
      _________        SSH        _________
         A          ==========>     Client1  
      _________                   _________
@@ -34,7 +35,7 @@ Existen otras herramientas similares a Ansible, como CHEF, PUPPET o SALT.  La ve
      __________
       Client 2 
      __________    
-
+````
 - Tienen muy buen rendiemiento
 - Y por último destacar que su programación es muy sencilla, a través de YML
 
@@ -273,10 +274,10 @@ En caso de tener inventariados dos servidores con distinto usuario.
 el comando anterior fallará al establecer la conexión con el usuario vagrant en ubuntu.
 Para solventar este error, lo mejor es modificar el fichero de inventario
 
+```
 192.168.33.6    ansible_user=vagrant
-
 192.168.33.105  ansible_user=ubuntu
-
+```
 y ejecutar el comando sin necesidad de pasar el usuario. 
 
 > ansible all -m ping
