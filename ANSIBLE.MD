@@ -290,14 +290,14 @@ Supngamos el caso de uso Añadir Un usuario a los distintos servidores.
 
 > ansible all -m user -a "name=benauca state=present"
 
-'''
+````
 localhost | FAILED! => {
     "changed": false,
     "cmd": "/usr/sbin/useradd -m benauca",
     "msg": "[Errno 13] Permission denied",
     "rc": 13
 }
-'''
+````
 
 este comando intentará crer el usuario benauca en todas las máquinas, pero fallará si no tenemos permisos de administrador para los usuarios vagrant, y ubuntu de modificar el fichero /etc/passw
 
