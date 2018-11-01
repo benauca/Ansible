@@ -274,8 +274,9 @@ el comando anterior fallará al establecer la conexión con el usuario vagrant e
 Para solventar este error, lo mejor es modificar el fichero de inventario
 
 192.168.33.6    ansible_user=vagrant
+
 192.168.33.105  ansible_user=ubuntu
 
-y ejecutar el comando sin necesidad de pasar el usuario
+y ejecutar el comando sin necesidad de pasar el usuario. 
 
 > ansible all -m ping
