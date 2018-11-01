@@ -25,15 +25,15 @@ Existen otras herramientas similares a Ansible, como CHEF, PUPPET o SALT.  La ve
 - No requiren de la instalación de agentes
 - la comunicación entre el servidor Ansible y los clientes siguen los estándar SSH.
 
-     ----------        SSH        ----------
-    |    A     |    ---------->  |  Client1 |
-     ----------                   ----------
+     _________        SSH        _________
+        A          ==========>     Client1  
+     _________                   _________
         \
          \ SSH
           \
-     ----------
-    | Client 2 |
-     ----------    
+     __________
+      Client 2 
+     __________    
 
 - Tienen muy buen rendiemiento
 - Y por último destacar que su programación es muy sencilla, a través de YML
@@ -246,5 +246,36 @@ localhost | SUCCESS => {
 }
 ````
 
-ansible localhost -a "hostname"
-ansible localhost -a "uptim"
+En el servidor Ansible, necesitaremos hacer uso del usuario "vagrant". En caso de querer trabajar con este usuario será necesario generar su clav ssh.
+
+> ssh-keygen -o -t rsa -C "benauca@gmail.com" -b 4096
+
+Obtener su clave  
+
+> cat ~/.ssh/id_rsa.pub
+
+E incluirla en la lista de authorized-keys
+
+
+> ansible 192.168.33.6 -u vagrant -m ping
+
+Recordar que para ello habremos debido incluir el servidor  192.168.336.6 en el fichero host
+
+En caso de querer ejecutar el Modulo en todos los servidores bastará con ejecutar el commando con el parámetro "all"
+
+> ansible all -u vagrant -m ping
+
+
+En caso de tener inventariados dos servidores con distinto usuario.
+- Ubuntu --- ubuntu
+- Centos7--- vagrant
+
+el comando anterior fallará al establecer la conexión con el usuario vagrant en ubuntu.
+Para solventar este error, lo mejor es modificar el fichero de inventario
+
+192.168.33.6    ansible_user=vagrant
+192.168.33.105  ansible_user=ubuntu
+
+y ejecutar el comando sin necesidad de pasar el usuario
+
+> ansible all -m ping
