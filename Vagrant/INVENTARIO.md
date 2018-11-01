@@ -60,14 +60,12 @@ Las variables tienen la siguiente prioridad
     2- SUBGRUPO
     3- Grupo Padre
 
-> [apt: vars]
-
+> [apt: vars] \n
 > ansible_become=true
 
 Es posible separar las variables por ficheros.
 
 > /etc/ansible/group_vars/group1
-
 > /etc/ansible/host_vars/localhost
 
 # Sintaxis
