@@ -1,4 +1,4 @@
-# MODO Adhoc
+# Modo Adhoc
 
 Permite realizar acciones y comprobar conexiones a los elementos del inventario.
 
@@ -10,15 +10,17 @@ Permite realizar acciones y comprobar conexiones a los elementos del inventario.
     ArgumentoS: Si no hay modulos
 
 
-Lo ha de 5 en 5 serviores.
+Lo hace de 5 en 5 serviores.
+````
     |
     |   --limit: filtrar a uno o varios servidores separados por ",". 
     |           Limita el numero de servidores donde se aplica la tarea.
     |   --user: (-u)  Usuario
     |   --become (-b)
     |   --f simultaneos. Por defecto 5.
-
+````
 Modulos
+````
     | -- setup.     Obtiene información de un servidor ansible_favts
     | -- copy.      Copia ficheros desde el servidor local (Ansible) al resto de servidores.
     | -- yum/apt.   Modulo para la instalación de aplicaciones
@@ -27,7 +29,7 @@ Modulos
     |            "present"   Indica que está presente en la instalación del sistema
     |            "latest"    Tiene que estar la última versión
     |            "absent"    El SW no está instalado dentro de un servidor
-
+````
 
 Opciones
     |   -L      Verifica si una tarea puede o no ser realizada
@@ -43,7 +45,7 @@ Podemos cambiar la configuración global de ansible
     - Ansible Galaxy: repositorio de modulos de Roles.
 
 Orden
-==========================================================================================
+====
 
 - Variables de Entorno
 - Ficheros. Ansible CFG. .ansible.cfg 
@@ -51,7 +53,7 @@ Orden
 
 
 #WINDOWS
-=================================================================================================================
+====
 
 Si quisieramos administrar servidores Windowa, tendriamos que realizar tareas  tanto en los servidores ansible como en los propios servidores Windowa
 
@@ -65,7 +67,7 @@ Servidores Window
     - Habilitar puero 5986, Puerto para administrar Windows remotamente.
 
 # COMBINAR INVENTARIOS
-==============================================================================================================
+====
 
 Es posible combinar inventarios independientemente de que sean estáticos o dinámicos.
 
