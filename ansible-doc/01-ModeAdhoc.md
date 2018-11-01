@@ -52,7 +52,7 @@ Orden
 - Ficheros por defecto /etc/ansible/ansible.cfg
 
 
-#WINDOWS
+WINDOWS
 ====
 
 Si quisieramos administrar servidores Windowa, tendriamos que realizar tareas  tanto en los servidores ansible como en los propios servidores Windowa
@@ -66,7 +66,7 @@ Servidores Window
     - Configurar Control remoto
     - Habilitar puero 5986, Puerto para administrar Windows remotamente.
 
-# COMBINAR INVENTARIOS
+COMBINAR INVENTARIOS
 ====
 
 Es posible combinar inventarios independientemente de que sean estáticos o dinámicos.
