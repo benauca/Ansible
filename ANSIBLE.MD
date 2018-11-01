@@ -35,7 +35,7 @@ Existen otras herramientas similares a Ansible, como CHEF, PUPPET o SALT.  La ve
      __________
       Client 2 
      __________    
-````
+```
 - Tienen muy buen rendiemiento
 - Y por último destacar que su programación es muy sencilla, a través de YML
 
@@ -281,3 +281,68 @@ Para solventar este error, lo mejor es modificar el fichero de inventario
 y ejecutar el comando sin necesidad de pasar el usuario. 
 
 > ansible all -m ping
+
+# Usuario No Root
+
+--become
+
+Supngamos el caso de uso Añadir Un usuario a los distintos servidores.
+
+> ansible all -m user -a "name=benauca state=present"
+
+'''
+localhost | FAILED! => {
+    "changed": false,
+    "cmd": "/usr/sbin/useradd -m benauca",
+    "msg": "[Errno 13] Permission denied",
+    "rc": 13
+}
+'''
+
+este comando intentará crer el usuario benauca en todas las máquinas, pero fallará si no tenemos permisos de administrador para los usuarios vagrant, y ubuntu de modificar el fichero /etc/passw
+
+> ansible all -m user -a "name=benauca state=present" --become
+
+```
+localhost | CHANGED => {
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1001,
+    "home": "/home/benauca",
+    "name": "benauca",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1001
+}
+```
+
+Con la opción --become cambiamos a root y podremos ejecutar las acciones. Es similar al comando "sudo". 
+
+> ansible all --become -a "id"
+
+Nos Mostrará que el comando se ha ejecutado con el usuario root
+
+```
+[vagrant@centos7 ~]$ ansible all --become -a "id"
+localhost | CHANGED | rc=0 >>
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+```
+> ansible all --become -a "id"
+
+El mismo comando sin la opción --become, nos mostrará que el comando se ha ejcutado con el usuario vagrant
+
+[vagrant@centos7 ~]$ id
+uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+> ansible all  -a "id"
+
+[vagrant@centos7 ~]$ ansible all  -a "id"
+localhost | CHANGED | rc=0 >>
+uid=1000(vagrant) gid=1000(vagrant) groups=1000(vagrant) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+```
+
+Por todo esto, es necesario tener correctamente configurado SUDO para ejecutar tareas de administrador.
