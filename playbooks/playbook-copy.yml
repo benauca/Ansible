@@ -1,0 +1,9 @@
+---
+- name: My FirstPLaybook
+  hosts: all
+  remote_user: benauca
+  become: true
+  tasks:
+    - name: copy file
+      copy: src="/etc/ansible/playbooks/playbook-copy.yml" dest="/home/benauca"
+...
